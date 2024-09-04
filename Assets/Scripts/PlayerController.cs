@@ -5,34 +5,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool overworld; 
+    // Movement variables
+    public float xSpeed = 5f;
+    private float xVector = 0f;
+    public bool inCave;
 
-    private void Start()
+    private Rigidbody2D rb;
+
+    public float ySpeed = 5f;
+    private float yVector = 0f;
+
+    void Start()
     {
-        GetComponentInChildren<TopDown_AnimatorController>().enabled = overworld;
-        GetComponentInChildren<Platformer_AnimatorController>().enabled = !overworld; //what do you think ! means?
-        
-        
-        if (overworld)
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 0f;
-        }
-        else
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
-        }
+        // Get the Rigidbody2D component
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    void Update()
     {
-        
+        // Handle input
+        float horizontalInput = Input.GetAxis("Horizontal");
+        xVector = xSpeed * horizontalInput;
+        float verticalInput = Input.GetAxis("Vertical");
+        yVector = ySpeed * verticalInput;
+        rb.AddForce(new Vector2(xVector, yVector));
+
     }
-    
-    //for organization, put other built-in Unity functions here
-    
-    
-    
-    
-    
-    //after all Unity functions, your own functions can go here
 }
