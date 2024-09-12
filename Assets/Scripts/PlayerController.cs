@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     // Movement variables
     public float xSpeed = 5f;
     private float xVector = 0f;
-    public bool inCave;
-
+    public bool inCave=false;
+    public AudioSource metalpipe;
     private Rigidbody2D rb;
 
     public float ySpeed = 5f;
@@ -25,10 +25,19 @@ public class PlayerController : MonoBehaviour
     {
         // Handle input
         float horizontalInput = Input.GetAxis("Horizontal");
-        xVector = xSpeed * horizontalInput;
+        xVector = xSpeed * horizontalInput*Time.deltaTime;
         float verticalInput = Input.GetAxis("Vertical");
-        yVector = ySpeed * verticalInput;
-        rb.AddForce(new Vector2(xVector, yVector));
-
+        yVector = ySpeed * verticalInput*Time.deltaTime;
+        transform.Translate(xVector, yVector,0);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        Debug.Log("collision");
+        if (other.tag == "Coin")
+        {
+            Debug.Log("oww");
+            metalpipe.Play();
+        }
     }
 }
