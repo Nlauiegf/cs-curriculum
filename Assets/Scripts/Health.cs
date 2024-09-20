@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnscreenGui : MonoBehaviour
+public class Health : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public GameManager gm;
+    void OnCollis()
     {
-        public string coinString = ""+gm.coins
+        gm = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame

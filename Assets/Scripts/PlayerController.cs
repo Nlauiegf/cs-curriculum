@@ -6,21 +6,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Movement variables
-    public float xSpeed = 5f;
+    public float xSpeed = 50f;
     private float xVector = 0f;
     public bool inCave=false;
     public AudioSource metalpipe;
     private Rigidbody2D rb;
-    public NewBehaviourScript gm;
+    public GameManager gm;
 
-    public float ySpeed = 5f;
+    public float ySpeed = 50f;
     private float yVector = 0f;
 
     void Start()
     {
         // Get the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
-        gm = FindObjectOfType<NewBehaviourScript>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     void Update()
