@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool inCave=false;
     public AudioSource metalpipe;
     private Rigidbody2D rb;
+    public NewBehaviourScript gm;
 
     public float ySpeed = 5f;
     private float yVector = 0f;
@@ -19,16 +20,18 @@ public class PlayerController : MonoBehaviour
     {
         // Get the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
+        gm = FindObjectOfType<NewBehaviourScript>();
     }
 
     void Update()
     {
         // Handle input
         float horizontalInput = Input.GetAxis("Horizontal");
-        xVector = xSpeed * horizontalInput*Time.deltaTime;
         float verticalInput = Input.GetAxis("Vertical");
+        xVector = xSpeed * horizontalInput*Time.deltaTime;
         yVector = ySpeed * verticalInput*Time.deltaTime;
         transform.Translate(xVector, yVector,0);
+        // normalize distance so that diagonal isnt too fast
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -36,8 +39,18 @@ public class PlayerController : MonoBehaviour
         Debug.Log("collision");
         if (other.tag == "Coin")
         {
-            Debug.Log("oww");
+            Debug.Log("Lets Go I Found A Coin!");
+            gm.coins += 1;
             metalpipe.Play();
+            if (gm.coins == 1)
+            {
+                Debug.Log("I now have 1 coin");
+            }
+            else
+            {
+                Debug.Log("I now have " + gm.coins + " coins");
+            }
+            Destroy(other.gameObject);
         }
     }
 }
