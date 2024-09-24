@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public int coins;
-    private int health;
-    private int MAX_HEALTH = 10;
+    public int coins = 0;
+    public int health = 10;
+    public int MAX_HEALTH = 10;
+
     void Awake()
     {
-        if (gm!=null && gm!=this)
+        if (gm != null && gm != this)
         {
             Destroy(this.gameObject);
         }
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
         return health;
     }
 
-    private int changeHealth(int amount)
+    public int changeHealth(int amount)
     {
         health += amount;
         if (health > MAX_HEALTH)
@@ -36,16 +38,18 @@ public class GameManager : MonoBehaviour
             health = MAX_HEALTH;
         }
 
-        if (health<1)
+        if (health < 1)
         {
-            int adsoiubfsdoubyfa = 16 / 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            health = 10;
+            coins = coins / 3;
+        } 
+        return health;
+        // Start is called before the first frame update
+        void Start()
+        {
+
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 }
+    

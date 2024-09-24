@@ -214,12 +214,12 @@ PrefabInstance:
     - target: {fileID: 4281311786053241907, guid: 69c7343f050914c7787bbbe42c07b5b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: 19.34
       objectReference: {fileID: 0}
     - target: {fileID: 4281311786053241907, guid: 69c7343f050914c7787bbbe42c07b5b8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.91
+      value: 23.57
       objectReference: {fileID: 0}
     - target: {fileID: 4281311786053241907, guid: 69c7343f050914c7787bbbe42c07b5b8,
         type: 3}
@@ -39922,7 +39922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
-  coinsText: {fileID: 0}
 --- !u!4 &569347153
 Transform:
   m_ObjectHideFlags: 0
@@ -40200,7 +40199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -393.3, y: -250.3}
+  m_AnchoredPosition: {x: -349, y: -257}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848245231
@@ -85406,7 +85405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ac3102e76f9481eb900cb7835d3d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  gm: {fileID: 569347152}
   coins: {fileID: 848245231}
   coinString: rdgfuyg8ug8u
 --- !u!4 &2020212485 stripped

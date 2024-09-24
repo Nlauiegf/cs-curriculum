@@ -10,16 +10,25 @@ public class OnscreenGui : MonoBehaviour
     public TextMeshProUGUI coins;
 
     public string coinString;
+    
+    public TextMeshProUGUI health;
+
+    public string healthString;
     // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
     }
 
+
+
+    
     // Update is called once per frame
     void Update()
     {
         coins.text = coinString;
-        coinString = "" + gm.coins;
+        coinString = "Coins: " + gm.coins;
+        health.text = healthString;
+        healthString = "Health: " + gm.health;
     }
 }

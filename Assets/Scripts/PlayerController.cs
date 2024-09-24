@@ -6,14 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Movement variables
-    public float xSpeed = 50f;
+    public float xSpeed = 10f;
     private float xVector = 0f;
     public bool inCave=false;
     public AudioSource metalpipe;
     private Rigidbody2D rb;
     public GameManager gm;
 
-    public float ySpeed = 50f;
+    public float ySpeed = 10f;
     private float yVector = 0f;
 
     void Start()
@@ -39,18 +39,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("collision");
         if (other.tag == "Coin")
         {
-            Debug.Log("Lets Go I Found A Coin!");
             gm.coins += 1;
             metalpipe.Play();
-            if (gm.coins == 1)
-            {
-                Debug.Log("I now have 1 coin");
-            }
-            else
-            {
-                Debug.Log("I now have " + gm.coins + " coins");
-            }
             Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Spikes")
+        {
+            gm.changeHealth( -1);
+            metalpipe.Play();
         }
     }
 }

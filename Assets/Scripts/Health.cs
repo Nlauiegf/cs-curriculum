@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameManager gm;
-    void OnCollis()
+    void OnCollision()
     {
         gm = FindFirstObjectByType<GameManager>();
     }
