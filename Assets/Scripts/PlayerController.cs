@@ -6,14 +6,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Movement variables
-    public float xSpeed = 10f;
+    public float xSpeed = 5f;
     private float xVector = 0f;
-    public bool inCave=false;
+    public bool inCave = false;
     public AudioSource metalpipe;
     private Rigidbody2D rb;
     public GameManager gm;
-
-    public float ySpeed = 10f;
+    public float ySpeed = 5f;
     private float yVector = 0f;
 
     void Start()
@@ -35,19 +34,23 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         Debug.Log("collision");
         if (other.tag == "Coin")
         {
-            gm.coins += 1;
-            metalpipe.Play();
+            gm.changeCoins( 1);
             Destroy(other.gameObject);
         }
 
         if (other.tag == "Spikes")
         {
             gm.changeHealth( -1);
-            metalpipe.Play();
         }
+
+        if (other.tag == "Tourette Projectile")
+        {
+            gm.changeHealth(-2);
+            Destroy(other.gameObject);
+        }
+        metalpipe.Play();
     }
 }

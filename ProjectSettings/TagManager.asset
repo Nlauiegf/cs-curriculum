@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Axe
   - Spikes
+  - Tourette Projectile
+  - Waypoint
   layers:
   - Default
   - TransparentFX
