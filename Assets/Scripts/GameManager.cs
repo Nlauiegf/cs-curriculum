@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI Health;
     public static GameManager gm;
     public int coins = 0;
-    public int health = 5;
-    public int MAX_HEALTH = 5;
+    public int health = 10;
+    public int MAX_HEALTH = 10;
 
     void Awake()
     {
@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
     
     public int changeHealth(int amount)
     {
-        
         health += amount;
         if (health > MAX_HEALTH)
         {
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             health = 10;
-            coins = coins / 3;
+            coins /= 3;
         }
         Health.text = "Health: " + gm.health;
         return health;

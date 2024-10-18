@@ -116,7 +116,6 @@ public class DUDEGUY : MonoBehaviour
     void Patrol()
     {
         targetPosition = waypoints[targetWaypoint].transform.position;
-
         mtpv = (targetPosition - transform.position).normalized;
         mobileEnemy.Play("Walk" + direction);
         if (Vector3.Distance(waypoints[targetWaypoint].transform.position, transform.position) < .015)
@@ -133,15 +132,17 @@ public class DUDEGUY : MonoBehaviour
 
     void Attack()
     {
-        mobileEnemy.Play("Attack" + direction);
+        cooldown -= Time.deltaTime;
         targetPosition = player.transform.position;
         if (Vector3.Distance(targetPosition, transform.position) > 2 && player)
         {
             state = states.Chase;
         }
 
-        if (Vector3.Distance((targetPosition, transform.position)) < 1 && player))
+        if (Vector3.Distance(targetPosition, transform.position) < 2 && player && cooldown < 1)
         {
+            mobileEnemy.Play("Attack" + direction);
+            cooldown = 2;
             gm.changeHealth(-3);
         }
     }
