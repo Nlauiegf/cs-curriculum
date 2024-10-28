@@ -44,7 +44,5 @@ public class TurretScript : MonoBehaviour
         GameObject bulletInstance = Instantiate(bullet, transform.position, quaternion.identity);
         bulletInstance.GetComponent<BulletScript>().targetPosition = player.transform.position;
         cooldown = firerate;
-
-       
     }
 }

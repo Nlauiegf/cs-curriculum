@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int coins = 0;
     public int health = 10;
     public int MAX_HEALTH = 10;
+    
 
     void Awake()
     {
@@ -33,28 +34,30 @@ public class GameManager : MonoBehaviour
         return health;
     }
 
-    public int changeCoins(int amount)
+    public void changeCoins(int amount)
     {
         coins += amount;
         Coins.text = "Coins: " + gm.coins;
-        return coins;
     }
-    
-    public int changeHealth(int amount)
+
+    public void changeHealth(int amount)
     {
         health += amount;
         if (health > MAX_HEALTH)
         {
             health = MAX_HEALTH;
         }
+
         if (health < 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             health = 10;
             coins /= 3;
+            Coins.text = "Coins: " + gm.coins;
         }
+
         Health.text = "Health: " + gm.health;
-        return health;
     }
+
 }
     

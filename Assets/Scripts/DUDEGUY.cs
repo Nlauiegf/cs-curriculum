@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.IMGUI.Controls;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,11 +21,14 @@ public class DUDEGUY : MonoBehaviour
     public float cooldown;
     Vector3 targetPosition;
     private GameManager gm;
+    public int OrcHealth = 5;
+    public GameObject Axe;
     public enum states
     {
         Attack,
         Patrol,
-        Chase
+        Chase,
+        Death
     }
 
     public states state;
@@ -144,6 +148,17 @@ public class DUDEGUY : MonoBehaviour
             mobileEnemy.Play("Attack" + direction);
             cooldown = 2;
             gm.changeHealth(-3);
+        }
+    }
+
+    public void changeEnemyHealth(int amount)
+    {
+        //add health above maybe?
+        OrcHealth += amount;
+        if (OrcHealth < 1)
+        {
+            Destroy(this);
+            Instantiate(Axe);
         }
     }
 }
