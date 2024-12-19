@@ -23,6 +23,10 @@ public class DUDEGUY : MonoBehaviour
     private GameManager gm;
     public int OrcHealth = 5;
     public GameObject Axe;
+    public bool alive = true;
+    public DUDEGUY dg;
+    public bool enemyAlive = true;
+    public PlayerController pc;
     public enum states
     {
         Attack,
@@ -36,6 +40,7 @@ public class DUDEGUY : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        pc = FindObjectOfType<PlayerController>();
     }
 
     //state = states.Attack;
@@ -65,19 +70,24 @@ public class DUDEGUY : MonoBehaviour
             }
            
         }
-        if (state == states.Chase)
+        if (state == states.Chase && alive)
         {
             Chase();
         }
 
-        if (state == states.Attack)
+        if (state == states.Attack && alive)
         {
             Attack();
         }
 
-        if (state == states.Patrol)
+        if (state == states.Patrol && alive)
         {
             Patrol();
+        }
+
+        if (state == states.Death)
+        {
+            Death();
         }
     }
     
@@ -98,7 +108,11 @@ public class DUDEGUY : MonoBehaviour
 
     void Chase()
     {
-        targetPosition = player.transform.position;
+        if (player)
+        {
+            targetPosition = player.transform.position;
+        }
+     
 
         mtpv = (targetPosition - transform.position).normalized;
         mobileEnemy.Play("Walk" + direction);
@@ -151,14 +165,19 @@ public class DUDEGUY : MonoBehaviour
         }
     }
 
-    public void changeEnemyHealth(int amount)
+    public void ChangeEnemyHealth(int damage)
     {
         //add health above maybe?
-        OrcHealth += amount;
+        OrcHealth -= damage;
         if (OrcHealth < 1)
         {
-            Destroy(this);
-            Instantiate(Axe);
+            state = states.Death;
+            enemyAlive = false;
+            Instantiate(Axe, mobileEnemy.transform.position, Quaternion.identity);
         }
+    }
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

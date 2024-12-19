@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
             coins /= 3;
             Coins.text = "Coins: " + gm.coins;
         }
-
         Health.text = "Health: " + gm.health;
     }
 

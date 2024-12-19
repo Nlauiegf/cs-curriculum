@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TopDown_AnimatorController : MonoBehaviour
 {
+    private TopDown_AnimatorController TDown;
     [SerializeField]
     RuntimeAnimatorController animShovel;
 
@@ -88,6 +89,7 @@ public class TopDown_AnimatorController : MonoBehaviour
     public void SwitchToAxe()
     {
         anim.runtimeAnimatorController = animAxe;
+        Debug.Log("Switched to axe");
     }
 
     // Call this function to set the weapon back to a shovel.

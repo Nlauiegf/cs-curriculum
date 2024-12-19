@@ -10,6 +10,9 @@ TagManager:
   - Spikes
   - Tourette Projectile
   - Waypoint
+  - Door
+  - Ground
+  - Dying now
   layers:
   - Default
   - TransparentFX
